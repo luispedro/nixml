@@ -33,7 +33,10 @@ def main(args=None):
         generate.write_nix(data, output, opts)
     if opts.sub == 'shell':
         import subprocess
-        exit(subprocess.call(['nix-shell', nix_file]))
+        nix_shell_args = ['nix-shell', nix_file]
+        if opts.pure:
+            nix_shell_args.append('--pure')
+        exit(subprocess.call(nix_shell_args))
 
 if __name__ == '__main__':
     from sys import argv
