@@ -1,4 +1,4 @@
-import generate
+from . import generate
 from sys import exit
 
 try:
@@ -7,7 +7,10 @@ except ImportError:
     print("argparse not found. Please install argparse with 'pip install argparse'")
     exit(1)
 
-def main(args):
+def main(args=None):
+    if args is None:
+        from sys import argv
+        args = argv[1:]
     import yaml
     parser = argparse.ArgumentParser()
     parser.add_argument("-c", "--cache-git", action="store_true",
