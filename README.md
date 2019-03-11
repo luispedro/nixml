@@ -15,6 +15,7 @@ Example:
           - numpy
           - scipy
           - matplotlib
+          - mahotas
           - jupyter
           - scikitlearn
 
