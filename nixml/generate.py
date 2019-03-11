@@ -3,7 +3,9 @@ from collections import namedtuple
 Snapshot = namedtuple('Snapshot', ['rev', 'sha256'])
 
 snapshots = {
-    'stable-19.03': Snapshot(rev='343abf7730fb4ea5046a60a553720004e6789d54', sha256='1as8v41cc35l9g7gkzzpj1rk82cxpb4z4wacsaqdf1mnq43x1zv9'),
+    'stable-19.03':
+        Snapshot(rev='c42f391c0c87429dafd059c2da2aff66edb00357',
+                 sha256='0yh8wmyws63lc757akgwclvjgl5hk763ci26ndz04dpw6frsrlkq'),
 }
 
 import_nixpkgs_nocache = '''
