@@ -64,7 +64,9 @@ def write_nix(data, output, options):
                                 packages='\n    '.join(p['modules']))
             )                    
             buildInputs.append('pwp')
+        elif p['lang'] == 'nix':
+            buildInputs.extend(p['modules'])
         else:
-            raise NotImplementedError("Only Python lang for now")
+            raise NotImplementedError("Only langs supported are 'python' and 'nix' (saw: {})".format(p['lang']))
     name = p.get('name', 'pynix-env')
     output.write(mkDerivation.format(name=name, buildInputs=' '.join(buildInputs)))
