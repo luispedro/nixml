@@ -41,6 +41,13 @@ This avoids accidental use of packages that are not part of the environment:
 nixml shell --pure
 ```
 
+Finally, you can run
+
+```bash
+nixml generate
+```
+
+to just create the `nixml.nix` corresponding to the enviroment.
 
 ## Dependencies
 
