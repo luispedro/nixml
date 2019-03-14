@@ -1,4 +1,5 @@
 from collections import namedtuple
+from . import languages
 
 Snapshot = namedtuple('Snapshot', ['rev', 'sha256'])
 
@@ -22,18 +23,6 @@ with (import (builtins.fetchGit {{
   url = https://github.com/nixos/nixpkgs/;
   rev = "{rev}";
 }}) {{}});
-'''
-
-python_group = '''
-let
-  pwp = python{py_version}.buildEnv.override {{
-    extraLibs = (with python{py_version}Packages; [
-        {packages}
-    ]);
-    ignoreCollisions = true;
- }};
-
-in
 '''
 
 mkDerivation = '''
@@ -60,10 +49,8 @@ def write_nix(data, output, options):
     buildInputs = []
     for p in data['packages']:
         if p['lang'] == 'python':
-            output.write(python_group.format(py_version=p['version'],
-                                packages='\n    '.join(p['modules']))
-            )                    
-            buildInputs.append('pwp')
+            buildInputs.extend(
+                    languages.python.generate(p, output, options))
         elif p['lang'] == 'nix':
             buildInputs.extend(p['modules'])
         else:
