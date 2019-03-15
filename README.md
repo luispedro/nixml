@@ -64,8 +64,9 @@ It's a YaML file
 is available, but general syntax is `{stable,unstable}-{year}.{month}`.
 
 `packages`: A list of packages, which are grouped into language blocks:
-    - `python`: Python language environment, specify the version (`version`) and `modules`.
-    - `nix`: Generic packages (i.e., `vim` or `bash`)
+
+- `python`: Python language environment, specify the version (`version`) and `modules`.
+- `nix`: Generic packages (i.e., `vim` or `bash`)
 
 ## Author
 
