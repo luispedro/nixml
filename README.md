@@ -1,6 +1,5 @@
 # NIX-ML : Easy, reproducible, environments with Nix + YAML
 
-
 Simple, perfectly reproducible, environments with [nix](https://nixos.org)
 specified using an YAML file.
 
@@ -63,9 +62,11 @@ It's a YaML file
 `snapshot`: This is the package version to use. Currently, only `stable-19.03`
 is available, but general syntax is `{stable,unstable}-{year}.{month}`.
 
-`packages`: A list of packages, which are grouped into language blocks:
+`packages`: A list of packages, which are grouped into language blocks.
+Currently supported:
 
 - `python`: Python language environment, specify the version (`version`) and `modules`.
+- `texlive`: Texlive packages
 - `nix`: Generic packages (i.e., `vim` or `bash`)
 
 ## Author
