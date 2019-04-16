@@ -4,9 +4,20 @@ from . import languages
 Snapshot = namedtuple('Snapshot', ['rev', 'sha256'])
 
 snapshots = {
+    'stable-19.04':
+        Snapshot(rev='37694c8cc0e9ecab60d06f1d9a2fd0073bcc5fa3',
+                 sha256='1ibjg6ln2y764wfg0yd0v055jm4xzhmxy5lfz63m6jr3y16jdmzb'),
     'stable-19.03':
         Snapshot(rev='c42f391c0c87429dafd059c2da2aff66edb00357',
                  sha256='0yh8wmyws63lc757akgwclvjgl5hk763ci26ndz04dpw6frsrlkq'),
+
+
+    'unstable-19.04':
+        Snapshot(rev='54bb7ed9270a8b16b2dd56fd52cbf31562b2bf4a',
+                 sha256='0qwhddz0vl8jib8imc8l9m5cddxpycvc5qly4gniy0iqvfiyx84j'),
+    'unstable-19.03':
+        Snapshot(rev='d64d42f12d253d4b0fde2b63e14d1f7d322b754c',
+                 sha256='1l8i523paqmhzgcn1v8z5jssry5ww46qnfrhj7832drgh1h7bxdx'),
 }
 
 import_nixpkgs_nocache = '''
