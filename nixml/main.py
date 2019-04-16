@@ -41,12 +41,18 @@ def main(args=None):
             'shell': ['generate', 'shell'],
             'generate': ['generate'],
             'run': ['generate', 'run'],
-            }.get(opts.sub)
+            'no-sub': ['error-no-sub']
+            }.get(getattr(opts, 'sub', 'no-sub'))
 
     if actions is None:
-        from os import stderr
-        stderr.write("Unknown subcommand '{}'".format(opts.sub))
+        from sys import stderr
+        stderr.write("Unknown subcommand '{}'\n".format(opts.sub))
         exit(1)
+    if 'error-no-sub' in actions:
+        from sys import stderr
+        stderr.write("You must use a subcommand as argument to nixml.\n\nUse --help for a list of subcommands.\n")
+        exit(1)
+
 
     nix_file = 'nixml.nix'
     if 'generate' in actions:
