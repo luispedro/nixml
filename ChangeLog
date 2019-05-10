@@ -1,6 +1,7 @@
 Version 0.1+
 	* Better error messages
-	* Update releases
+	* Decouple snapshots from nixml releases
+	* Update snapshots
 
 Version 0.1 2019-03-26 by luispedro
 	* First release

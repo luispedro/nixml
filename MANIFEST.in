@@ -1,0 +1,9 @@
+include nixml/*py
+include nixml/*/*py
+include nixml/data/snapshots.tsv
+include README.md
+include AUTHORS
+include ChangeLog
+include COPYING
+include INSTALL
+include *requirements.txt

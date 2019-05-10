@@ -39,6 +39,12 @@ except:
     long_description = open('README.md').read()
 
 packages = setuptools.find_packages()
+package_dir = {
+    'nixml': 'nixml/',
+    }
+package_data = {
+    'nixml': ['data/snapshots.tsv'],
+    }
 
 classifiers = [
 'Intended Audience :: Developers',
@@ -64,6 +70,8 @@ setuptools.setup(name = 'nixml',
       license = 'MIT',
       platforms = ['Any'],
       classifiers = classifiers,
+      package_dir = package_dir,
+      package_data = package_data,
       packages = packages,
       entry_points={
           'console_scripts': [
