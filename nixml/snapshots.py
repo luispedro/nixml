@@ -22,8 +22,10 @@ def get_snapshot(snapshot):
                         'snapshots.tsv')]
     except NameError:
         data_paths = []
-    data_paths.append(snapshot_cache())
+    data_paths.append(snapshot_cache(True))
     for p in data_paths:
+        if p is None:
+            continue
         snaps = load_snapshot_data_from(p)
         r = snaps.get(snapshot)
         if r:
@@ -43,17 +45,20 @@ def load_snapshot_data_from(data_file):
         snapshots[name] = Snapshot(rev=rev, sha256=sha256)
     return snapshots
 
-def snapshot_cache():
+def snapshot_cache(check_exists):
     '''Returns location of snapshot file'''
     from os import path, makedirs
     cache_directory = path.expanduser("~/.cache/nixml/")
+    cache_file = cache_directory + "snapshots.tsv"
+    if check_exists and not path.exists(cache_file):
+        return None
     makedirs(cache_directory, exist_ok=True)
-    return cache_directory + "snapshots.tsv"
+    return cache_file
 
 def update_snapshot_data():
     import requests
     r = requests.get(GITHUB_URL)
-    ofile = snapshot_cache()
+    ofile = snapshot_cache(False)
     with open(ofile, 'wt') as output:
         output.write(r.text)
     return ofile
