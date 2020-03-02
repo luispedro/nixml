@@ -1,4 +1,4 @@
-# Copyright (C) 2019, Luis Pedro Coelho <luis@luispedro.org>
+# Copyright (C) 2019-2020, Luis Pedro Coelho <luis@luispedro.org>
 # vim: set ts=4 sts=4 sw=4 expandtab smartindent:
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,6 +38,8 @@ try:
 except:
     long_description = open('README.md').read()
 
+install_requires = open('requirements.txt').read()
+
 packages = setuptools.find_packages()
 package_dir = {
     'nixml': 'nixml/',
@@ -73,6 +75,7 @@ setuptools.setup(name = 'nixml',
       package_dir = package_dir,
       package_data = package_data,
       packages = packages,
+      install_requires = install_requires,
       entry_points={
           'console_scripts': [
               'nixml = nixml.main:main',
