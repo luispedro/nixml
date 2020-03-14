@@ -17,4 +17,4 @@ for nixml_name, branch_name in [
     h = after_target[-1].hexsha
     s = subprocess.check_output(['nix-prefetch-url', '--type', 'sha256', '--unpack', f'https://github.com/nixos/nixpkgs/archive/{h}.tar.gz'])
     s = s.decode('ascii').strip()
-    print(f'{nixml_name}-{y2}-{month:02}\t{h}\t{s}')
+    print(f'{nixml_name}-{y2}.{month:02}\t{h}\t{s}')
