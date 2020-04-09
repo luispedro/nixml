@@ -30,7 +30,7 @@ def get_snapshot(snapshot):
         r = snaps.get(snapshot)
         if r:
             return r
-    print("Snapshot not found locally. Updating snapshot data...")
+    print("Snapshot '{}' not found locally. Updating snapshot data...".format(snapshot))
     snaps = load_snapshot_data_from(update_snapshot_data())
     r = snaps.get(snapshot)
     if r:
@@ -56,6 +56,9 @@ def snapshot_cache(check_exists):
     return cache_file
 
 def update_snapshot_data():
+    '''Downloads snapshot data from Github
+
+    Returns the path to the downloaded file'''
     import requests
     r = requests.get(GITHUB_URL)
     ofile = snapshot_cache(False)
