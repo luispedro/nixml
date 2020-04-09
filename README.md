@@ -6,7 +6,7 @@ specified using an YAML file.
 Example, write to a file called `env.nml`:
 
     nixml: v0.0
-    snapshot: stable-19.03
+    snapshot: stable-20.03
     packages:
       - lang: python
         version: 2
@@ -25,7 +25,7 @@ nixml shell
 ```
 
 and you will be dropped into an environment containing the packages listed
-above, as was up to date in March 2019. Conceptually, the environment will
+above, as was up to date in March 2020. Conceptually, the environment will
 always be generated from scratch, but caching means that the first time will
 take significantly longer (including, it will download all dependencies).
 Afterwards, it should take a few seconds at most.
@@ -59,8 +59,8 @@ It's a YaML file
 
 `nixml`: version of nixml to use. Currently, only `v0.0` is supported.
 
-`snapshot`: This is the package version to use. Currently, only `stable-19.03`
-is available, but general syntax is `{stable,unstable}-{year}.{month}`.
+`snapshot`: The general syntax is `{stable,unstable}-{year}.{month}`. Snapshots
+since 19.03 are available.
 
 `packages`: A list of packages, which are grouped into language blocks.
 Currently supported:
@@ -71,4 +71,7 @@ Currently supported:
 
 ## Author
 
-- [Luis Pedro Coelho](http://luispedro.org) (email: [luis@luispedro.org](mailto:luis@luispedro.org) on twitter: [@luispedrocoelho](https://twitter.com/luispedrocoelho))
+- [Luis Pedro Coelho](http://luispedro.org) (email:
+  [luis@luispedro.org](mailto:luis@luispedro.org) on twitter:
+  [@luispedrocoelho](https://twitter.com/luispedrocoelho))
+
