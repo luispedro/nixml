@@ -1,3 +1,6 @@
+Version 0.2+
+	* Add package synonyms in Python
+
 Version 0.2 2020-03-14 by luispedro
 	* Better error messages
 	* Decouple snapshots from nixml releases
