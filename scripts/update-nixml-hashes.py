@@ -10,7 +10,7 @@ r = Repo('.')
 
 for nixml_name, branch_name in [
         ('unstable', 'master'),
-        ('stable', 'nixos-19.09'),
+        ('stable', 'nixos-20.03'),
         ]:
     [head] = [b for b in r.branches if b.name == branch_name]
     after_target = [c for c in head.commit.iter_parents() if c.authored_date > t]
