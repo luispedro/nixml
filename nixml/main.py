@@ -35,7 +35,7 @@ def main(args=None):
     opts = parser.parse_args(args)
 
     with open('env.nml') as ifile:
-        data = yaml.load(ifile)
+        data = yaml.safe_load(ifile)
 
     actions = {
             'shell': ['generate', 'shell'],
