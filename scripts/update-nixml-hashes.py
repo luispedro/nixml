@@ -6,15 +6,33 @@ import subprocess
 y2 = int(argv[1])
 month = int(argv[2])
 t = datetime(2000 + y2, month, 1).timestamp()
+
+
+# We only check commits in the last year
+min_t = datetime(2000 + y2 - 1, month , 1).timestamp()
 r = Repo('.')
+
+def iter_after(c, min_t):
+    seen = set()
+    stack = [c]
+    while stack:
+        c = stack.pop()
+        if c.hexsha in seen:
+            continue
+        if c.authored_date < min_t:
+            continue
+        yield c
+        seen.add(c.hexsha)
+        stack.extend(c.parents)
 
 for nixml_name, branch_name in [
         ('unstable', 'master'),
         ('stable', 'nixos-20.03'),
         ]:
     [head] = [b for b in r.branches if b.name == branch_name]
-    after_target = [c for c in head.commit.iter_parents() if c.authored_date > t]
-    h = after_target[-1].hexsha
+    candidates = [c for c in iter_after(head.commit, min_t) if c.authored_date >= t]
+    candidates.sort(key=lambda c : c.authored_date)
+    h = candidates[0].hexsha
     s = subprocess.check_output(['nix-prefetch-url', '--type', 'sha256', '--unpack', f'https://github.com/nixos/nixpkgs/archive/{h}.tar.gz'])
     s = s.decode('ascii').strip()
     print(f'{nixml_name}-{y2}.{month:02}\t{h}\t{s}')
