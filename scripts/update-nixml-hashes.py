@@ -1,4 +1,11 @@
-from git import Repo
+try:
+    from git import Repo
+except ImportError:
+    print("import git failed")
+    print("GiPython is needed: https://gitpython.readthedocs.io/")
+    print("\t\tpip install GitPython")
+    raise
+
 from datetime import datetime
 from sys import argv
 import subprocess
@@ -27,7 +34,7 @@ def iter_after(c, min_t):
 
 for nixml_name, branch_name in [
         ('unstable', 'master'),
-        ('stable', 'nixos-20.03'),
+        ('stable', '20.09'),
         ]:
     [head] = [b for b in r.branches if b.name == branch_name]
     candidates = [c for c in iter_after(head.commit, min_t) if c.authored_date >= t]
