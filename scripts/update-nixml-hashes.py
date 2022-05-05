@@ -34,7 +34,7 @@ def iter_after(c, min_t):
 
 for nixml_name, branch_name in [
         ('unstable', 'master'),
-        ('stable', '20.09'),
+        ('stable', 'nixos-22.05'),
         ]:
     [head] = [b for b in r.branches if b.name == branch_name]
     candidates = [c for c in iter_after(head.commit, min_t) if c.authored_date >= t]
