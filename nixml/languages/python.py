@@ -31,6 +31,10 @@ def generate(data, output, _):
             '3.6': '36',
             '3.7': '37',
             '3.8': '38',
+            '3.9': '39',
+            '3.10': '310',
+            '3.11': '311',
+            '3.12': '312',
             }.get(py_version, py_version)
     packages = []
     for p in data['modules']:
