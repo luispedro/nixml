@@ -7,9 +7,12 @@ except ImportError:
     raise
 
 from datetime import datetime
-from sys import argv
+from sys import argv, exit
 import subprocess
 
+if len(argv) < 3:
+    print(f"Usage: {argv[0]} <year> <month>")
+    exit(1)
 y2 = int(argv[1])
 month = int(argv[2])
 t = datetime(2000 + y2, month, 1).timestamp()
@@ -34,7 +37,7 @@ def iter_after(c, min_t):
 
 for nixml_name, branch_name in [
         ('unstable', 'master'),
-        ('stable', 'nixos-22.05'),
+        ('stable', 'nixos-23.05'),
         ]:
     [head] = [b for b in r.branches if b.name == branch_name]
     candidates = [c for c in iter_after(head.commit, min_t) if c.authored_date >= t]
